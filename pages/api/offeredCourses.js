@@ -9,6 +9,9 @@ if (!process.env.MONGODB_URI) {
 
 export default async function handler(request, response) {
   try {
+    // Allow requests from any origin
+    response.setHeader("Access-Control-Allow-Origin", "*");
+
     const client = await new MongoClient(uri, options).connect();
     console.log("Just Connected to MongoDB");
     const db = client.db("offeredCourses-db");
